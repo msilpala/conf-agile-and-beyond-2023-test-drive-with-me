@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import kotlin.test.Ignore
 import kotlin.test.assertEquals
 
 class WordCounterTest() {
@@ -57,5 +59,29 @@ class WordCounterTest() {
 
         assertEquals(expectedWordCount, actualWordCounts)
     }
+
+    @Test
+    fun `Returns empty map if empty`() {
+        val input = ""
+        val expectedWordCount: Map<String, Int> = mapOf()
+        val wordCounter = WordCounter(input)
+
+        val actualWordCounts = wordCounter.countsByWord()
+
+        assertEquals(expectedWordCount, actualWordCounts)
+    }
+
+    @Test
+    @Ignore
+    fun `throws exception on null input`() {
+        val input = " "
+        val wordCounter = WordCounter(input)
+        assertThrows<Exception> {
+            wordCounter.countsByWord()
+
+        }
+
+    }
+
 
 }
